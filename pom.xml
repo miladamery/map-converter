@@ -5,12 +5,11 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>com.fastmapconverter</groupId>
-    <artifactId>fast-map-converter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>com.mapconverter</groupId>
+    <artifactId>map-converter</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
-    
-    <name>Fast Map Converter</name>
+    <name>Map Converter</name>
     <description>Annotation processor for generating bidirectional Java object to Map converters</description>
     
     <properties>
@@ -30,9 +29,9 @@
         
         <!-- Code generation utilities -->
         <dependency>
-            <groupId>com.squareup</groupId>
+            <groupId>com.palantir.javapoet</groupId>
             <artifactId>javapoet</artifactId>
-            <version>1.13.0</version>
+            <version>0.7.0</version>
         </dependency>
         
         <!-- Testing -->

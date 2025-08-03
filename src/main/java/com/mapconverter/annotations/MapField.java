@@ -1,4 +1,4 @@
-package com.fastmapconverter.annotations;
+package com.mapconverter.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
