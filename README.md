@@ -495,7 +495,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
 
 **Made with ❤️ for the Java community**
-
-[⭐ Star this repo](https://github.com/your-org/fast-map-converter) • [🐛 Report issues](https://github.com/your-org/fast-map-converter/issues) • [💡 Request features](https://github.com/your-org/fast-map-converter/discussions)
-
 </div>
