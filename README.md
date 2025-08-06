@@ -48,17 +48,6 @@ FastMapConverter eliminates boilerplate code by automatically generating high-pe
 
 ## 🚀 Quick Start
 
-### Maven Setup
-
-```xml
-
-<dependency>
-    <groupId>com.mapconvertercom.mapconverter</groupId>
-    <artifactId>fast-map-converter</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
-
 ### Basic Usage
 
 ```java
