@@ -1,12 +1,14 @@
-# Map Converter
+# MapConverter
 
 > **A high-performance Java annotation processor for automatic bidirectional object-to-Map conversion**
 
-[![Java 17+](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.oracle.com/java/)
-[![Maven Central](https://img.shields.io/badge/Maven-Central-green.svg)](https://search.maven.org/)
+[![Java 17](https://img.shields.io/badge/Java-17-blue.svg)](https://www.oracle.com/java/)
+[![Version 0.0.1](https://img.shields.io/badge/Version-0.0.1-green.svg)](https://github.com/your-org/fast-map-converter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 FastMapConverter eliminates boilerplate code by automatically generating high-performance, type-safe mapper classes that convert Java objects to `Map<String, Object>` and back. Perfect for API serialization, configuration management, and data transformation tasks.
+
+> **⚠️ Development Status**: This project is currently in active development (v0.0.1). Generated mappers use the `FastMapper_` suffix (e.g., `UserFastMapper_.toMap()`). Some features described below are implemented but may require further testing and refinement.
 
 ## ✨ Core Features
 
@@ -61,12 +63,12 @@ public class User {
 }
 ```
 
-// Generated mapper usage
+// Generated mapper usage (note: FastMapper_ suffix)
 User user = new User("John Doe", 30, "john@example.com");
-Map<String, Object> userMap = UserMapper.toMap(user);
+Map<String, Object> userMap = UserFastMapper_.toMap(user);
 // Result: {"name": "John Doe", "age": 30, "email": "john@example.com"}
 
-User restored = UserMapper.fromMap(userMap);
+User restored = UserFastMapper_.fromMap(userMap);
 // Perfectly reconstructed User object
 ```
 
@@ -86,10 +88,10 @@ public record PersonRecord(
 
 // Generated usage
 PersonRecord person = new PersonRecord("Jane Doe", 28, "jane@example.com");
-Map<String, Object> personMap = PersonRecordMapper.toMap(person);
+Map<String, Object> personMap = PersonRecordFastMapper_.toMap(person);
 // Result: {"name": "Jane Doe", "age": 28, "email": "jane@example.com"}
 
-PersonRecord restored = PersonRecordMapper.fromMap(personMap);
+PersonRecord restored = PersonRecordFastMapper_.fromMap(personMap);
 // Perfectly reconstructed using canonical constructor
 ```
 
@@ -134,8 +136,8 @@ TeamRecord team = new TeamRecord(
     new PersonRecord[]{lead1, lead2}
 );
 
-Map<String, Object> teamMap = TeamRecordMapper.toMap(team);
-TeamRecord restoredTeam = TeamRecordMapper.fromMap(teamMap);
+Map<String, Object> teamMap = TeamRecordFastMapper_.toMap(team);
+TeamRecord restoredTeam = TeamRecordFastMapper_.fromMap(teamMap);
 ```
 
 ### Date/Time Records
@@ -231,8 +233,8 @@ public class Address {
 
 // Usage - all nested objects automatically handled
 Customer customer = createComplexCustomer();
-Map<String, Object> customerMap = CustomerMapper.toMap(customer);
-Customer restored = CustomerMapper.fromMap(customerMap);
+Map<String, Object> customerMap = CustomerFastMapper_.toMap(customer);
+Customer restored = CustomerFastMapper_.fromMap(customerMap);
 ```
 
 **Nested Features:**
@@ -287,7 +289,7 @@ public class UserEntityConfig {
 
 // Generated mapper works identically
 UserEntity user = userRepository.findById(1L);
-Map<String, Object> userMap = UserEntityMapper.toMap(user);
+Map<String, Object> userMap = UserEntityFastMapper_.toMap(user);
 ```
 
 **External Mapping Features:**
@@ -346,7 +348,7 @@ Comprehensive null handling throughout the conversion process:
 ```java
 // Generated code includes proper null checks
 if (obj.getAddress() != null) {
-    map.put("address", AddressMapper.toMap(obj.getAddress()));
+    map.put("address", AddressFastMapper_.toMap(obj.getAddress()));
 }
 
 // Null collections handled gracefully
@@ -382,7 +384,7 @@ public class ApiResponse<T> {
 
 // Perfect for REST API serialization
 ApiResponse<User> response = createApiResponse();
-Map<String, Object> json = ApiResponseMapper.toMap(response);
+Map<String, Object> json = ApiResponseFastMapper_.toMap(response);
 ```
 
 ### Configuration Management
@@ -400,7 +402,7 @@ public class DatabaseConfig {
 
 // Load from properties/YAML into strongly-typed objects
 Map<String, Object> configMap = loadFromYaml("database.yml");
-DatabaseConfig config = DatabaseConfigMapper.fromMap(configMap);
+DatabaseConfig config = DatabaseConfigFastMapper_.fromMap(configMap);
 ```
 
 ### JPA Entity Serialization
@@ -426,7 +428,7 @@ public class ProductEntityConfig {
 
 // Seamless entity conversion for APIs
 ProductEntity entity = productRepository.findById(1L);
-Map<String, Object> productJson = ProductEntityMapper.toMap(entity);
+Map<String, Object> productJson = ProductEntityFastMapper_.toMap(entity);
 ```
 
 ### Modern Java Records
@@ -450,13 +452,13 @@ UserProfileRecord profile = new UserProfileRecord(
     LocalDateTime.now(), new AddressRecord("123 Main St", "Springfield", "12345")
 );
 
-Map<String, Object> profileJson = UserProfileRecordMapper.toMap(profile);
+Map<String, Object> profileJson = UserProfileRecordFastMapper_.toMap(profile);
 // Perfect for modern API responses with immutable data
 ```
 
 ## 😧 Roadmap
 
-### Current Status: **v1.1 - Enhanced** ✅
+### Current Status: **v0.0.1 - Initial Development** 🚧
 - ✅ Core annotation processing infrastructure
 - ✅ Basic field mapping with custom naming
 - ✅ Collection support (List, Set, Array)
@@ -465,36 +467,11 @@ Map<String, Object> profileJson = UserProfileRecordMapper.toMap(profile);
 - ✅ Date/time handling with flexible formatting
 - ✅ **Java Records Support** - Full immutable record mapping with canonical constructors
 
-### Upcoming Features: **v1.2** 🔄
+### Upcoming Features: **v0.1.0** 🔄
 - 🟦 **Custom Converters** - User-defined type conversion logic
 - 🟦 **Builder Pattern Support** - Generate builder-style mappers
 - 🟦 **Map Collections** - Support for `Map<K,V>` field types
 - 🟦 **Performance Optimizations** - Further speed improvements
-
-### Future Vision: **v2.0** 🌟
-- 🟦 **Plugin Architecture** - Extensible converter framework
-- 🟦 **IDE Integration** - Enhanced development-time support
-- 🟦 **Validation Integration** - Built-in Bean Validation support
-- 🟦 **Schema Generation** - JSON Schema generation from mappers
-
-## 🏆 Why FastMapConverter?
-
-| Feature | FastMapConverter | Manual Code | MapStruct | Jackson |
-|---------|------------------|-------------|-----------|----------|
-| **Performance** | ⚡ Zero reflection | ⚡ Native speed | ⚡ Code generation | 🐌 Reflection |
-| **Type Safety** | ✅ Compile-time | ✅ Compile-time | ✅ Compile-time | ❌ Runtime |
-| **Nested Objects** | ✅ Automatic | ❌ Manual coding | ✅ Manual config | ✅ Automatic |
-| **Collections** | ✅ Full support | ❌ Manual coding | ✅ Manual config | ✅ Automatic |
-| **External Objects** | ✅ Configuration | ❌ Not possible | ❌ Limited | ✅ Annotations |
-| **Java Records** | ✅ Full support | ❌ Manual coding | ❌ Not supported | ❌ Limited |
-| **Setup Complexity** | 🟢 Minimal | 🔴 High maintenance | 🟡 Moderate | 🟢 Minimal |
-| **Learning Curve** | 🟢 Simple annotations | 🔴 Complex coding | 🟡 DSL learning | 🟢 Familiar |
-
-**FastMapConverter** combines the best of all worlds: the performance of generated code, the simplicity of annotations, and the flexibility to handle any object structure.
-
-## 🤝 Contributing
-
-We welcome contributions! See our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ### Development Setup
 ```bash

@@ -37,10 +37,10 @@ import java.util.Set;
  */
 @AutoService(Processor.class)
 @SupportedAnnotationTypes({
-    "com.fastmapconverter.annotations.MapperGenerate",
-    "com.fastmapconverter.annotations.ExternalMapper"
+    "com.mapconverter.annotations.MapperGenerate",
+    "com.mapconverter.annotations.ExternalMapper"
 })
-@SupportedSourceVersion(SourceVersion.RELEASE_11)
+@SupportedSourceVersion(SourceVersion.RELEASE_17)
 public class MapperProcessor extends AbstractProcessor {
     
     private MapperRegistry mapperRegistry;
