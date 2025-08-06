@@ -1,4 +1,4 @@
-# FastMapConverter
+# Map Converter
 
 > **A high-performance Java annotation processor for automatic bidirectional object-to-Map conversion**
 
